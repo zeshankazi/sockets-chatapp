@@ -14,8 +14,17 @@ io.on('connection',(socket)=>{
  console.log('new user connected');
  
  socket.on('disconnect',()=>{
-     console.log('user has disconneted')
+     console.log('user has disconneted');
  })
+
+socket.on('createMessage', (msg)=>{
+    io.emit('newMessage' ,{
+       from : msg.from,
+       text: msg.text,
+       createdAt:new Date().getTime()
+
+    })
+})
 
 
 })
